@@ -1,3 +1,8 @@
+type Publish = {
+  from: string;
+  upto: string;
+}
+
 type MessageVariants = {
   header: string;
   details: string;
@@ -8,6 +13,7 @@ type Scope = {
 };
 
 type MessageResponse = {
+  publish: Publish;
   deviation_case_id: number;
   message_variants: MessageVariants[];
   scope: Scope;

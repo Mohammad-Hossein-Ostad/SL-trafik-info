@@ -1,8 +1,8 @@
 import Link from "next/link";
-import ThemeSwitcher from "../theme-switcher/theme-switcher.component";
 
 export default function Footer() {
   const currentDate = new Date().getFullYear();
+
   return (
     <footer className="m-4 font-mono">
       <div className="m-4 mx-auto w-full max-w-screen-xl rounded-lg p-4 py-6 shadow dark:bg-gray-800 lg:py-10">
@@ -50,10 +50,6 @@ export default function Footer() {
               </svg>
               <span className="sr-only">LinkedIn account</span>
             </Link>
-            <span className="ms-5 text-gray-500 md:hidden">|</span>
-            <div className="ms-5 md:hidden">
-              <ThemeSwitcher />
-            </div>
           </div>
         </div>
       </div>

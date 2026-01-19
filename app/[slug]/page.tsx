@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { fetchMessages } from "../lib/fetchers/slApi";
+import DeviationCard from "../components/deviation-card/deviation-card-component";
 
 export async function generateStaticParams() {
   const posts = await fetchMessages();
@@ -35,7 +36,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div className="mx-auto mt-20 flex max-w-screen-xl flex-wrap items-center justify-between p-3">
       <div>
         {post.map((message) => {
-          const { deviation_case_id, message_variants, scope } = message;
+          const { publish, deviation_case_id, message_variants, scope } =
+            message;
+          const { from, upto } = publish;
           const { lines } = scope;
 
           if (lines && lines.length > 0 && message_variants.length > 0) {
@@ -48,12 +51,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   className="my-5 flex flex-col font-mono dark:text-white"
                   key={deviation_case_id}
                 >
-                  <article>
-                    <h3 className="my-3 text-2xl dark:text-white">{header}</h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-400">
-                      {details}
-                    </p>
-                  </article>
+                  <DeviationCard
+                    header={header}
+                    details={details}
+                    from={from}
+                    upto={upto}
+                  />
                 </div>
               );
             }
